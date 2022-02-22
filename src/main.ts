@@ -1,13 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './assets/css/reset.css'
 import {createWebHashHistory, createRouter} from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './views/Home.vue'
 
 const history = createWebHashHistory()
 const router = createRouter({
     history,
     routes:[
-        {path: '/', component: HelloWorld}
+        {path: '/', component: Home}
     ]
 })
 const app = createApp(App)
