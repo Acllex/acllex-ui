@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div>
       <h1>AcllexUI</h1>
       <h2>一个Vue3的前端 UI 框架</h2>
@@ -13,9 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject,Ref } from 'vue';
 
-const isMenu = inject<Ref<boolean>>('isMenu');
-console.log(isMenu?.value);
+
 
 </script>

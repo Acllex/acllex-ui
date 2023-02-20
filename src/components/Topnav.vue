@@ -2,12 +2,12 @@
   <header>
     <div class="menu">
       <div>
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" @click="setMenu" aria-hidden="true">
           <use xlink:href="#icon-caidan"></use>
         </svg>
       </div>
     </div>
-    <div class="logo" @click="setMenu">
+    <div class="logo">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-_UIsheji"></use>
       </svg>
@@ -22,16 +22,38 @@
       </li>
     </ul>
   </header>
+  <aside v-if="isMenu" @click="setMenu">
+    <li
+      :class="selectComputed == value ? 'active' : ''"
+      v-for="(value, key) in menuList"
+      :key="key"
+    >
+      <router-link :to="value">{{ key }}</router-link>
+    </li>
+  </aside>
 </template>
 
 <script setup lang="ts">
-import { inject,Ref } from 'vue';
+import { inject, ref, Ref, computed } from "vue";
+import { useRoute } from "vue-router";
+const menuList = ref({
+  首页: "/",
+  组件: "/doc",
+  "Switch 组件": "/doc/switch",
+  "Button 组件": "/doc/switch",
+  "Diglog 组件": "/doc/switch",
+});
 
+const isMenu = inject<Ref<boolean>>("isMenu");
+const setMenu = () => {
+  isMenu!.value = !isMenu!.value;
+};
+const route = useRoute();
+const selectComputed = computed(() => {
+  console.log(route.fullPath);
 
-const isMenu = inject<Ref<boolean>>('isMenu');
-  const setMenu = ()=>{  
-     isMenu!.value = !isMenu!.value;
-  }
+  return route.fullPath;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -104,9 +126,25 @@ header {
   }
 }
 aside {
-  padding: 60px 10px 30px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
+    0 9px 28px 8px rgb(0 0 0 / 5%);
+  padding: 12px;
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
+  z-index: 12;
+  li {
+    width: 160px;
+    padding: 6px 0;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  .active {
+    background-color: #c5e2ff;
+    color: #0b85ff;
+  }
 }
 </style>
