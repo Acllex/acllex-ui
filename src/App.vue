@@ -1,11 +1,21 @@
 <template>
   <Topnav></Topnav>
-  <router-view />
+  <div class="main">
+    <router-view />
+  </div>
 </template>
 
 <script setup lang="ts">
 import Topnav from "./components/Topnav.vue";
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+
+import { ref, provide } from 'vue';
+
+provide('isMenu', ref<boolean>(false))
 </script>
 
+<style scoped lang="scss">
+  .main {
+    width: 100%;
+    padding-top: 60px;
+  }
+</style>
