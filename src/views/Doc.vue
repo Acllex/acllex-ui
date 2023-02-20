@@ -1,11 +1,26 @@
 <template>
-  <div>Doc</div>
+  <div>
+    <aside>
+      <ul>
+        <li
+            v-for="(value, key) in menuList"
+            :key="key"
+        >
+          <router-link :to="value">{{ key }}</router-link>
+        </li>
+      </ul>
+    </aside>
+  </div>
   <router-view></router-view>
 </template>
 
 <script setup lang="ts">
-import { inject,Ref } from 'vue';
+import {inject, ref, Ref} from 'vue';
 
-const isMenu = inject<Ref<boolean>>('isMenu');
+const menuList = ref({
+  "Switch 组件": "/doc/switch",
+  "Button 组件": "/doc/switch",
+  "Diglog 组件": "/doc/switch",
+});
 
 </script>
