@@ -23,13 +23,15 @@
     </ul>
   </header>
   <aside v-if="isMenu" @click="setMenu">
-    <li
-      :class="selectComputed == value ? 'active' : ''"
-      v-for="(value, key) in menuList"
-      :key="key"
-    >
-      <router-link :to="value">{{ key }}</router-link>
-    </li>
+    <ul>
+      <li
+          :class="selectComputed === value ? 'active' : ''"
+          v-for="(value, key) in menuList"
+          :key="key"
+      >
+        <router-link :to="value">{{ key }}</router-link>
+      </li>
+    </ul>
   </aside>
 </template>
 
