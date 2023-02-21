@@ -32,25 +32,9 @@ $radius: 4px;
   & + & {
     margin-left: 8px;
   }
-  &:hover,
-  &:focus {
-    color: $blue;
-    border-color: $blue;
-  }
-  &:focus {
-    outline: none;
-  }
-  &::-moz-focus-inner {
-    border: 0;
-  }
 }
 .ac-btn-primary {
   background-color: $blue;
   color: white;
-  &:hover,
-  &:focus {
-    color: white;
-    border-color: $blue;
-  }
 }
 </style>
