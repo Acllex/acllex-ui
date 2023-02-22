@@ -1,14 +1,25 @@
 <template>
-  <button class="ac-btn" :class="`ac-btn-${type}`"><slot /></button>
+  <button class="ac-btn" :class="[`ac-btn-${type}`, {'ac-btn-active': isClick}]" @click="onClicks"><slot /></button>
 </template>
 
 <script setup lang="ts">
+import { defineProps, ref } from "vue";
 defineProps({
   type: {
     type: String,
     default: "default",
   },
 });
+
+const isClick = ref(false);
+
+const onClicks = () => {
+  isClick.value = true;
+  setTimeout(() => {
+    isClick.value = false;
+  }, 100);
+  console.log("click");
+};
 </script>
 
 <style lang="scss">
@@ -36,5 +47,10 @@ $radius: 4px;
 .ac-btn-primary {
   background-color: $blue;
   color: white;
+}
+.ac-btn-active{
+  background-color: #038dff;
+  color: white;
+  border-color: $blue;
 }
 </style>
