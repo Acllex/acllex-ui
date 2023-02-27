@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 const props = defineProps(["checked"]);
 const emit = defineEmits(["update:checked"]);
 const setChecked = () => {
