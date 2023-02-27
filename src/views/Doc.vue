@@ -2,7 +2,7 @@
   <div class="docs">
     <aside>
       <ul>
-        <li v-for="(value, key) in menuList" :key="key" :class="{active: key==isActive}">
+        <li v-for="(value, key) in menuList" :key="key" :class="{active: key===isActive}">
           <router-link :to="value" @click="()=>isActive=key">{{ key }}</router-link>
         </li>
       </ul>
@@ -14,12 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, Ref } from "vue";
+import { ref } from "vue";
 const isActive = ref('');
 const menuList = ref({
   "Switch 组件": "/doc/switch",
   "Button 组件": "/doc/button",
-  "Diglog 组件": "/doc/switch",
+  "Dialog 组件": "/doc/dialog",
 });
 </script>
 
@@ -38,7 +38,7 @@ $blue: #40a9ff;
       & > li {
         width: 160px;
         border-radius: 8px;
-        padding: 10px 0px;
+        padding: 10px 0;
         display: flex;
         justify-content: center;
         &:hover{

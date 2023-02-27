@@ -4,7 +4,7 @@
     :class="[`ac-btn-${type}`, { 'ac-btn-active': isClick, 'ac-btn-disabled': disabled, 'ac-btn-plain': plain, 'ac-btn-loading': loading }]"
     @click="onClicks"
   >
-    <div :class="{'ac-btn-loading': loading}"></div>
+    <div :class="{'ac-btn-loading': loading}" />
     <slot />
   </button>
 </template>
@@ -198,25 +198,25 @@ $radius: 4px;
 }
 @keyframes acBtnShadow {
   0% {
-    box-shadow: 0px 0px 6px $blue;
+    box-shadow: 0 0 6px $blue;
   }
   50% {
-    box-shadow: 0px 0px 10px $blue;
+    box-shadow: 0 0 10px $blue;
   }
   100% {
-    box-shadow: 0px 0px 0px $blue;
+    box-shadow: 0 0 0 $blue;
   }
 }
 @keyframes acPrimaryBtnShadow {
   0% {
-    box-shadow: 0px 0px 6px $blue;
+    box-shadow: 0 0 6px $blue;
   }
   50% {
-    box-shadow: 0px 0px 10px $blue;
+    box-shadow: 0 0 10px $blue;
     background-color: #0000f5;
   }
   100% {
-    box-shadow: 0px 0px 0px $blue;
+    box-shadow: 0 0 0 $blue;
   }
 }
 @keyframes acBtnDangerShadow {
@@ -228,7 +228,7 @@ $radius: 4px;
     background-color: #a40000;
   }
   100% {
-    box-shadow: 0px 0px 0px $red;
+    box-shadow: 0 0 0 $red;
   }
 }
 </style>
