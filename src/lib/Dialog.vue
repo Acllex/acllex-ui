@@ -1,7 +1,7 @@
 <template>
   <template v-if="open">
     <div class="ac-dialog-back"/>
-    <div @click="onCloseDialog" class="ac-dialog-pos">
+    <div @click.stop="onCloseDialog" class="ac-dialog-pos">
       <div :style="{width: width}" class="ac-dialog">
         <div class="ac-dialog-msg">
           <header>{{ title }}</header>
@@ -9,8 +9,8 @@
             <slot/>
           </main>
           <footer>
-            <Button type="primary">确定</Button>
-            <Button>取消</Button>
+            <Button type="primary" @click.stop="dialogOk">确定</Button>
+            <Button @click.stop="dialogClose">取消</Button>
           </footer>
         </div>
       </div>
@@ -36,12 +36,33 @@ const props = defineProps({
   closeOnClickOverlay: {
     type: Boolean,
     default: true
+  },
+  onOk: {
+    type: Function,
+    default: ()=>{}
+  },
+  onCancel: {
+    type: Function,
+    default: ()=>{}
   }
 });
 const emits = defineEmits(["update:open"]);
+const onClose = ()=>{
+  emits('update:open', false);
+}
 const onCloseDialog = ()=>{
   if (!props.closeOnClickOverlay)return;
-  emits('update:open', false);
+  onClose();
+}
+const dialogOk = ()=>{
+  const bool = props.onOk();
+  if (bool===false)return;
+  onClose();
+}
+const dialogClose = ()=>{
+  const bool = props.onCancel();
+  if (bool===false)return;
+  onClose();
 }
 </script>
 

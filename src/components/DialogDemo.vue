@@ -2,7 +2,7 @@
   <div class="dialog-demo">
     <h1>基础示例</h1>
     <Button @click="onclick">Dialog</Button>
-    <Dialog width="600px" v-model:open="isOpen" title="示例1">
+    <Dialog width="600px" v-model:open="isOpen" title="示例1" :closeOnClickOverlay="true" :on-ok="onOk" :on-cancel="onCancel">
       <p>11111111</p>
       <p>111222222</p>
     </Dialog>
@@ -18,6 +18,13 @@ import {ref} from "vue";
 const isOpen = ref(false);
 const onclick = () => {
   isOpen.value = !isOpen.value;
+}
+const onOk = ()=>{
+  console.log("onOk!!!!")
+}
+const onCancel = ()=>{
+  console.log("onCancel!!!!!")
+  return false;
 }
 </script>
 <style scoped lang="scss">
