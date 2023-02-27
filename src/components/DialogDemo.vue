@@ -2,7 +2,7 @@
   <div class="dialog-demo">
     <h1>基础示例</h1>
     <Button @click="onclick">Dialog</Button>
-    <Dialog :open="isOpen" title="示例1">
+    <Dialog width="600px" v-model:open="isOpen" title="示例1">
       <p>11111111</p>
       <p>111222222</p>
     </Dialog>

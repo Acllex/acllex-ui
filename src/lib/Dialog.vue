@@ -1,8 +1,8 @@
 <template>
   <template v-if="open">
     <div class="ac-dialog-back"/>
-    <div class="ac-dialog-pos">
-      <div class="ac-dialog">
+    <div @click="onCloseDialog" class="ac-dialog-pos">
+      <div :style="{width: width}" class="ac-dialog">
         <div class="ac-dialog-msg">
           <header>{{ title }}</header>
           <main>
@@ -13,7 +13,6 @@
             <Button>取消</Button>
           </footer>
         </div>
-
       </div>
     </div>
   </template>
@@ -22,15 +21,28 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
 
-defineProps({
+const props = defineProps({
   title: {
     type: String
   },
   open: {
     type: Boolean,
     default: false
+  },
+  width: {
+    type: String,
+    default: '500px'
+  },
+  closeOnClickOverlay: {
+    type: Boolean,
+    default: true
   }
-})
+});
+const emits = defineEmits(["update:open"]);
+const onCloseDialog = ()=>{
+  if (!props.closeOnClickOverlay)return;
+  emits('update:open', false);
+}
 </script>
 
 <style lang="scss">
@@ -54,7 +66,7 @@ defineProps({
 
   & > .ac-dialog {
     margin: 0 auto;
-    width: 500px;
+    width: auto;
     position: relative;
     top: 100px;
     box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.1);
