@@ -4,7 +4,15 @@
     <div @click.stop="onCloseDialog" class="ac-dialog-pos">
       <div :style="{width: width}" class="ac-dialog">
         <div class="ac-dialog-msg">
-          <header>{{ title }}</header>
+          <header>
+            <span>{{ title }}</span>
+            <div class="ac-dialog-close">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-guanbi"></use>
+              </svg>
+            </div>
+
+          </header>
           <main>
             <slot/>
           </main>
@@ -39,29 +47,31 @@ const props = defineProps({
   },
   onOk: {
     type: Function,
-    default: ()=>{}
+    default: () => {
+    }
   },
   onCancel: {
     type: Function,
-    default: ()=>{}
+    default: () => {
+    }
   }
 });
 const emits = defineEmits(["update:open"]);
-const onClose = ()=>{
+const onClose = () => {
   emits('update:open', false);
 }
-const onCloseDialog = ()=>{
-  if (!props.closeOnClickOverlay)return;
+const onCloseDialog = () => {
+  if (!props.closeOnClickOverlay) return;
   onClose();
 }
-const dialogOk = ()=>{
+const dialogOk = () => {
   const bool = props.onOk();
-  if (bool===false)return;
+  if (bool === false) return;
   onClose();
 }
-const dialogClose = ()=>{
+const dialogClose = () => {
   const bool = props.onCancel();
-  if (bool===false)return;
+  if (bool === false) return;
   onClose();
 }
 </script>
@@ -107,6 +117,12 @@ const dialogClose = ()=>{
         font-size: 16px;
         line-height: 1.5;
         word-wrap: break-word;
+        & > .ac-dialog-close{
+          position: absolute;
+          top: 18px;
+          right: 18px;
+          font-size: 12px;
+        }
       }
 
       & > main {

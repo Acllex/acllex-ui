@@ -1,14 +1,15 @@
 <template>
   <Topnav></Topnav>
   <div class="main">
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Topnav from "./components/Topnav.vue";
 
-import { ref, provide } from "vue";
+import {ref, provide} from "vue";
+
 const width = document.documentElement.clientWidth;
 if (width > 500) {
   provide("isMenu", ref<boolean>(false));

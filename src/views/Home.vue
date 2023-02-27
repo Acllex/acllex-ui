@@ -6,7 +6,6 @@
       <p class="action">
         <a href="">GitHub</a>
         <a href="">开始</a>
-
       </p>
     </div>
   </div>
